@@ -1,3 +1,64 @@
 workflows:
-    sample-workflow:
-        name: Dhiman Motor Garage
+  ios-workflow:
+    name: Dhiman Motor Garage iOS
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      # Group must be created in Codemagic UI → App Settings → Environment Variables
+      # and must contain:
+      #   APP_STORE_CONNECT_KEY_IDENTIFIER  (Key ID, e.g. XXXXXXXXXX)
+      #   APP_STORE_CONNECT_ISSUER_ID       (UUID from App Store Connect → Users → Keys)
+      #   APP_STORE_CONNECT_PRIVATE_KEY     (full contents of the .p8 file, mark as secret)
+      #   CERTIFICATE_PRIVATE_KEY           (private key for the iOS Distribution certificate)
+      groups:
+        - app_store_credentials
+      vars:
+        XCODE_PROJECT: "DhimanMotorGarage.xcodeproj"
+        XCODE_SCHEME: "DhimanMotorGarage"
+        BUNDLE_ID: "in.dhimanmotorgarage.app"
+      xcode: latest
+
+    scripts:
+      - name: Install XcodeGen
+        script: brew install xcodegen
+
+      - name: Generate Xcode project from project.yml
+        script: xcodegen generate
+
+      - name: Set build number
+        script: agvtool new-version -all $BUILD_NUMBER
+
+      - name: Initialize keychain
+        script: keychain initialize
+
+      - name: Fetch App Store signing files
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
+
+      - name: Add certificates to keychain
+        script: keychain add-certificates
+
+      - name: Apply provisioning profiles to Xcode project
+        script: xcode-project use-profiles
+
+      - name: Build and export IPA
+        script: |
+          xcode-project build-ipa \
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+        submit_to_app_store: true

@@ -1,0 +1,42 @@
+# Xcode build artifacts
+build/
+DerivedData/
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Xcode user-specific settings
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+
+# Xcode workspace user settings
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor swap files
+*.swp
+*~.nib
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods (not currently used, but good hygiene)
+Pods/
+Podfile.lock
+
+# Fastlane (not currently used)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# Codemagic build logs
+/tmp/xcodebuild_logs/
