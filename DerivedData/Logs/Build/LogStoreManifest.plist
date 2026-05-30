@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>D9C94B7E-2723-4F79-BE52-79F1CC07FB2C</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D9C94B7E-2723-4F79-BE52-79F1CC07FB2C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>DhimanMotorGarage project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>DhimanMotorGarage</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>801820752.08740699</real>
+			<key>timeStoppedRecording</key>
+			<real>801820821.41134799</real>
+			<key>title</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>D9C94B7E-2723-4F79-BE52-79F1CC07FB2C</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,58 @@
+name: DhimanMotorGarage
+options:
+  bundleIdPrefix: in.dhimanmotorgarage
+  deploymentTarget:
+    iOS: "15.0"
+  xcodeVersion: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 1.0.0
+    DEVELOPMENT_TEAM: ""
+targets:
+  DhimanMotorGarage:
+    type: application
+    platform: iOS
+    sources:
+      - path: DhimanMotorGarage
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: in.dhimanmotorgarage.app
+        INFOPLIST_FILE: DhimanMotorGarage/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+    info:
+      path: DhimanMotorGarage/Info.plist
+      properties:
+        CFBundleDisplayName: Dhiman Motor Garage
+        CFBundleName: Dhiman Motor Garage
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+          UIImageName: SplashLogo
+          UIImageRespectsSafeAreaInsets: true
+        LSApplicationQueriesSchemes:
+          - tel
+          - telprompt
+          - mailto
+          - sms
+          - comgooglemaps
+          - whatsapp
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoadsInWebContent: true
+        NSCameraUsageDescription: This app needs camera access for vehicle service features on the website.
+        NSLocationWhenInUseUsageDescription: This app needs location access for vehicle service features on the website.
+        NSPhotoLibraryUsageDescription: This app needs photo library access for vehicle service features on the website.
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        ITSAppUsesNonExemptEncryption: false
+        UIStatusBarStyle: UIStatusBarStyleDarkContent
+        UIViewControllerBasedStatusBarAppearance: false

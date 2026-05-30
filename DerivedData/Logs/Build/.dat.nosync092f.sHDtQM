@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>17F52E47-B1F6-41E9-B3E8-A6FA54045E04</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>17F52E47-B1F6-41E9-B3E8-A6FA54045E04.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>DhimanMotorGarage project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>DhimanMotorGarage</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>801813700.80289602</real>
+			<key>timeStoppedRecording</key>
+			<real>801813714.77593803</real>
+			<key>title</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>17F52E47-B1F6-41E9-B3E8-A6FA54045E04</string>
+		</dict>
+		<key>5E5E7843-C505-40A5-B84C-6D315780CF0E</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5E5E7843-C505-40A5-B84C-6D315780CF0E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>DhimanMotorGarage project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>DhimanMotorGarage</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>801813647.28894198</real>
+			<key>timeStoppedRecording</key>
+			<real>801813660.61551797</real>
+			<key>title</key>
+			<string>Building project DhimanMotorGarage with scheme DhimanMotorGarage and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>5E5E7843-C505-40A5-B84C-6D315780CF0E</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

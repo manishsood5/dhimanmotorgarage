@@ -1,0 +1,10 @@
+version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
+options: "b1ce5e45bea9edd722a60b147e044f48fe585fd17671b621d43c76f4fad48739"
+build_start_time: [1780128069, 706246852]
+build_end_time: [1780128072, 133353948]
+inputs:
+  "/Users/ashishsood/Desktop/DhimanMotorGarage/DhimanMotorGarage/ContentView.swift": [1780128054, 356072425]
+  "/Users/ashishsood/Desktop/DhimanMotorGarage/DhimanMotorGarage/DhimanMotorGarageApp.swift": [1780127825, 136672973]
+  "/Users/ashishsood/Desktop/DhimanMotorGarage/DhimanMotorGarage/RootView.swift": [1780127825, 136537075]
+  "/Users/ashishsood/Desktop/DhimanMotorGarage/DhimanMotorGarage/SplashScreenView.swift": [1780127825, 136714220]
+  "/Users/ashishsood/Desktop/DhimanMotorGarage/DhimanMotorGarage/WebView.swift": [1780127825, 105890989]
