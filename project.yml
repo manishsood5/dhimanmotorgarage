@@ -30,8 +30,6 @@ targets:
         CFBundleName: Dhiman Motor Garage
         UILaunchScreen:
           UIColorName: LaunchBackground
-          UIImageName: SplashLogo
-          UIImageRespectsSafeAreaInsets: true
         LSApplicationQueriesSchemes:
           - tel
           - telprompt
