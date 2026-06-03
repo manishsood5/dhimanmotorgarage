@@ -39,7 +39,7 @@ targets:
           - whatsapp
         NSAppTransportSecurity:
           NSAllowsArbitraryLoadsInWebContent: true
-        NSCameraUsageDescription: This app needs camera access for vehicle service features on the website.
+        NSCameraUsageDescription: "Dhiman Motor Garage uses your camera so you can photograph your vehicle or its parts when submitting a service request. For example, you can capture an image of a damaged component or your vehicle's current condition so our technicians can review it before your appointment."
         NSLocationWhenInUseUsageDescription: This app needs location access for vehicle service features on the website.
         NSPhotoLibraryUsageDescription: This app needs photo library access for vehicle service features on the website.
         UISupportedInterfaceOrientations:

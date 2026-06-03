@@ -5,6 +5,7 @@ struct WebView: UIViewRepresentable {
     let url: URL
     @Binding var isLoading: Bool
     @Binding var progress: Double
+    @Binding var navigateTo: URL?
 
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -15,10 +16,27 @@ struct WebView: UIViewRepresentable {
         configuration.allowsInlineMediaPlayback = true
         configuration.defaultWebpagePreferences.allowsContentJavaScript = true
 
+        // Disable long-press callout and text selection everywhere except inputs.
+        let css = """
+            * { -webkit-touch-callout: none !important; -webkit-user-select: none !important; user-select: none !important; }
+            input, textarea, [contenteditable] { -webkit-user-select: text !important; user-select: text !important; }
+            """
+        let disableLongPressJS = """
+            (function() {
+                var style = document.createElement('style');
+                style.textContent = `\(css)`;
+                document.head.appendChild(style);
+                document.addEventListener('contextmenu', function(e) { e.preventDefault(); }, true);
+            })();
+            """
+        let script = WKUserScript(source: disableLongPressJS, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        configuration.userContentController.addUserScript(script)
+
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
+        webView.allowsLinkPreview = false
         webView.isOpaque = true
         webView.backgroundColor = .white
         webView.scrollView.backgroundColor = .white
@@ -31,7 +49,12 @@ struct WebView: UIViewRepresentable {
         return webView
     }
 
-    func updateUIView(_ webView: WKWebView, context: Context) {}
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        if let target = navigateTo {
+            webView.load(URLRequest(url: target))
+            DispatchQueue.main.async { navigateTo = nil }
+        }
+    }
 
     static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
         coordinator.stopObserving()
@@ -112,6 +135,57 @@ struct WebView: UIViewRepresentable {
                 webView.load(URLRequest(url: url))
             }
             return nil
+        }
+
+        // MARK: - JavaScript dialog handlers
+
+        func webView(
+            _ webView: WKWebView,
+            runJavaScriptAlertPanelWithMessage message: String,
+            initiatedByFrame frame: WKFrameInfo,
+            completionHandler: @escaping () -> Void
+        ) {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completionHandler() })
+            topViewController()?.present(alert, animated: true)
+        }
+
+        func webView(
+            _ webView: WKWebView,
+            runJavaScriptConfirmPanelWithMessage message: String,
+            initiatedByFrame frame: WKFrameInfo,
+            completionHandler: @escaping (Bool) -> Void
+        ) {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in completionHandler(false) })
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completionHandler(true) })
+            topViewController()?.present(alert, animated: true)
+        }
+
+        func webView(
+            _ webView: WKWebView,
+            runJavaScriptTextInputPanelWithPrompt prompt: String,
+            defaultText: String?,
+            initiatedByFrame frame: WKFrameInfo,
+            completionHandler: @escaping (String?) -> Void
+        ) {
+            let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
+            alert.addTextField { $0.text = defaultText }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in completionHandler(nil) })
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                completionHandler(alert.textFields?.first?.text)
+            })
+            topViewController()?.present(alert, animated: true)
+        }
+
+        private func topViewController() -> UIViewController? {
+            guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let root = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
+                return nil
+            }
+            var top = root
+            while let presented = top.presentedViewController { top = presented }
+            return top
         }
     }
 }
