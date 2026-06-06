@@ -29,6 +29,8 @@ targets:
       properties:
         CFBundleDisplayName: Dhiman Motor Garage
         CFBundleName: Dhiman Motor Garage
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         UILaunchScreen:
           UIColorName: LaunchBackground
         LSApplicationQueriesSchemes:
