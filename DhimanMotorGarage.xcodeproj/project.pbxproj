@@ -150,6 +150,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = in.dhimanmotorgarage.app;
+				PRODUCT_NAME = "Dhiman Motor Garage";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -167,6 +168,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = in.dhimanmotorgarage.app;
+				PRODUCT_NAME = "Dhiman Motor Garage";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
