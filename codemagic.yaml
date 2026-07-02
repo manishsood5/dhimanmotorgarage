@@ -26,6 +26,14 @@ workflows:
       - name: Generate Xcode project from project.yml
         script: xcodegen generate
 
+      - name: Resolve Swift Package dependencies
+        script: |
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -resolvePackageDependencies \
+            -clonedSourcePackagesDirPath "SourcePackages"
+
       - name: Set build number
         script: agvtool new-version -all $BUILD_NUMBER
 
@@ -48,7 +56,8 @@ workflows:
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            --cloned-source-packages-path "SourcePackages"
 
     artifacts:
       - build/ios/ipa/*.ipa
