@@ -58,12 +58,15 @@ struct WebView: UIViewRepresentable {
 
     static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
         coordinator.stopObserving()
+        coordinator.stopObservingPushToken()
     }
 
     final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         var parent: WebView
         weak var webView: WKWebView?
         private var progressObservation: NSKeyValueObservation?
+        private var pushTokenObserver: NSObjectProtocol?
+        private let pushTokenDefaultsKey = PushKeys.deviceToken
 
         init(parent: WebView) {
             self.parent = parent
@@ -75,11 +78,30 @@ struct WebView: UIViewRepresentable {
                     self?.parent.progress = webView.estimatedProgress
                 }
             }
+            startObservingPushToken()
         }
 
         func stopObserving() {
             progressObservation?.invalidate()
             progressObservation = nil
+        }
+
+        func startObservingPushToken() {
+            pushTokenObserver = NotificationCenter.default.addObserver(
+                forName: .didUpdatePushToken,
+                object: nil,
+                queue: .main
+            ) { [weak self] notification in
+                guard let token = notification.object as? String else { return }
+                self?.injectPushTokenIntoWebApp(token)
+            }
+        }
+
+        func stopObservingPushToken() {
+            if let pushTokenObserver {
+                NotificationCenter.default.removeObserver(pushTokenObserver)
+            }
+            pushTokenObserver = nil
         }
 
         func load(url: URL, in webView: WKWebView) {
@@ -94,6 +116,9 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             parent.isLoading = false
             parent.progress = 1.0
+            if let token = UserDefaults.standard.string(forKey: pushTokenDefaultsKey) {
+                injectPushTokenIntoWebApp(token)
+            }
         }
 
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -186,6 +211,18 @@ struct WebView: UIViewRepresentable {
             var top = root
             while let presented = top.presentedViewController { top = presented }
             return top
+        }
+
+        private func injectPushTokenIntoWebApp(_ token: String) {
+            guard let webView else { return }
+            let escapedToken = token.replacingOccurrences(of: "\\", with: "\\\\")
+                .replacingOccurrences(of: "'", with: "\\'")
+            let js = """
+                window.__iosPushToken = '\(escapedToken)';
+                localStorage.setItem('iosPushToken', '\(escapedToken)');
+                window.dispatchEvent(new CustomEvent('ios-push-token', { detail: { token: '\(escapedToken)' } }));
+            """
+            webView.evaluateJavaScript(js, completionHandler: nil)
         }
     }
 }

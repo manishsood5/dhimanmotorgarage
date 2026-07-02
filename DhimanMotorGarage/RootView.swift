@@ -20,6 +20,7 @@ struct RootView: View {
                 withAnimation(.easeOut(duration: 0.5)) {
                     showSplash = false
                 }
+                AppDelegate.requestSystemPushPermission()
             }
         }
     }

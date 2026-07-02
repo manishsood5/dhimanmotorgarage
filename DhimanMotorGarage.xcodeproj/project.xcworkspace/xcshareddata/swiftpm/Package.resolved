@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "onesignal-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/OneSignal/OneSignal-iOS-SDK",
+      "state" : {
+        "revision" : "ec44204c23ac526a78c2e6b38bc9dbf0f165d374",
+        "version" : "5.5.3"
+      }
+    }
+  ],
+  "version" : 2
+}

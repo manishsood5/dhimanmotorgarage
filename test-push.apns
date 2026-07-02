@@ -1,0 +1,11 @@
+{
+    "Simulator Target Bundle": "in.dhimanmotorgarage.app",
+    "aps": {
+        "alert": {
+            "title": "Booking Confirmed",
+            "body": "Your service appointment has been confirmed for tomorrow at 10 AM."
+        },
+        "badge": 1,
+        "sound": "default"
+    }
+}
