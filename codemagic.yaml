@@ -50,7 +50,10 @@ workflows:
         script: keychain add-certificates
 
       - name: Apply provisioning profiles to Xcode project
-        script: xcode-project use-profiles --project "$XCODE_PROJECT"
+        script: |
+          # Remove xcodeproj files from SPM checkouts so use-profiles doesn't try to sign them
+          find SourcePackages/checkouts -name "*.xcodeproj" -exec rm -rf {} + 2>/dev/null || true
+          xcode-project use-profiles
 
       - name: Build and export IPA
         script: |
