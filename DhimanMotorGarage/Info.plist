@@ -36,6 +36,8 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
+	<key>OneSignal_suppress_launch_urls</key>
+	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Dhiman Motor Garage uses your camera so you can photograph your vehicle or its parts when submitting a service request. For example, you can capture an image of a damaged component or your vehicle's current condition so our technicians can review it before your appointment.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

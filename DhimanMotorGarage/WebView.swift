@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+
 import OneSignalFramework
 
 struct WebView: UIViewRepresentable {
@@ -77,6 +78,7 @@ struct WebView: UIViewRepresentable {
         weak var webView: WKWebView?
         private var progressObservation: NSKeyValueObservation?
         private var pushTokenObserver: NSObjectProtocol?
+        private var notificationURLObserver: NSObjectProtocol?
         private let pushTokenDefaultsKey = PushKeys.deviceToken
 
         init(parent: WebView) {
@@ -90,11 +92,34 @@ struct WebView: UIViewRepresentable {
                 }
             }
             startObservingPushToken()
+            startObservingNotificationURL()
         }
 
         func stopObserving() {
             progressObservation?.invalidate()
             progressObservation = nil
+            if let notificationURLObserver {
+                NotificationCenter.default.removeObserver(notificationURLObserver)
+            }
+            notificationURLObserver = nil
+        }
+
+        func startObservingNotificationURL() {
+            notificationURLObserver = NotificationCenter.default.addObserver(
+                forName: .didReceiveNotificationURL,
+                object: nil,
+                queue: .main
+            ) { [weak self] notification in
+                guard let url = notification.object as? URL else { return }
+                self?.loadNotificationURL(url)
+            }
+        }
+
+        private func loadNotificationURL(_ url: URL) {
+            _ = PendingNavigation.consume()
+            guard let webView else { return }
+            parent.isLoading = true
+            webView.load(URLRequest(url: url))
         }
 
         func startObservingPushToken() {
@@ -117,7 +142,10 @@ struct WebView: UIViewRepresentable {
 
         func load(url: URL, in webView: WKWebView) {
             parent.isLoading = true
-            webView.load(URLRequest(url: url))
+            // A notification tapped during a cold launch may have queued a deep link
+            // before the WebView existed; open it instead of the home page.
+            let target = PendingNavigation.consume() ?? url
+            webView.load(URLRequest(url: target))
         }
 
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
