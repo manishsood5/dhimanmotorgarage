@@ -3,52 +3,66 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0B61C0503D75F478B3B7C8B3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5797B384D8B8FEFAB61E51 /* SplashScreenView.swift */; };
+		26024BD84AB9C434B90A81A0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CE1FD3A72EDCE3A59CB2A669 /* PrivacyInfo.xcprivacy */; };
 		458E9BC2576BA379C356D35D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6532FFC21A59B001319E2EB0 /* Assets.xcassets */; };
-		D4E7F1A2B3C8459D8F210E93 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */; };
 		48A7BFB8ACBF4D1926413FAC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A2B4E1AA6478E77C87753 /* RootView.swift */; };
 		6AC784F1E6752A7F20765E5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B460A93E79A30E46DFBC7A4 /* ContentView.swift */; };
 		7A083506D34FFDB932E8456A /* DhimanMotorGarageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E62034B41D657DA953B246 /* DhimanMotorGarageApp.swift */; };
 		8D1A00D315E6750C30549DC2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE059294A2878595AEC27BF /* WebView.swift */; };
-		A81C4F23D1B540AB9FCA99CD /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6941F99296BB4675A9F95B1E /* PushNotificationManager.swift */; };
+		938F59F7057586DCEE537C0E /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = CDEC3DC446DBB63337D1D443 /* OneSignalInAppMessages */; };
+		D3919CEBA788DFD609556243 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42B523A811B5AF1C359403B /* PushNotificationManager.swift */; };
 		EE98D05EF972D144B75099CC /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C02A6BE5FA701E00EF353D /* NetworkMonitor.swift */; };
-		FA001DB12FF68001002E03E5 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = EFA16ADB2FF676E2002E03E5 /* OneSignalExtension */; };
-		FA002DB22FF68001002E03E5 /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = EFA16ADC2FF676E2002E03E5 /* OneSignalFramework */; };
-		FA003DB32FF68001002E03E5 /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = EFA16ADD2FF676E2002E03E5 /* OneSignalInAppMessages */; };
-		FA004DB42FF68001002E03E5 /* OneSignalLocation in Frameworks */ = {isa = PBXBuildFile; productRef = EFA16ADE2FF676E2002E03E5 /* OneSignalLocation */; };
+		FB06AC802E9B30C4FA507FC8 /* OneSignalLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC7B9215949994E6E03B075 /* OneSignalLocation */; };
+		FB1DD8CAA1FCF50FF7647FE8 /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = CF5D412F3D23F81843AFAC0D /* OneSignalFramework */; };
+		FE37380CD6264C8A87E71B85 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 263AC97E08D7DB2DC23D09F8 /* OneSignalExtension */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		098C00F38970E913314D8207 /* DhimanMotorGarage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DhimanMotorGarage.entitlements; sourceTree = "<group>"; };
 		3DE059294A2878595AEC27BF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		56E62034B41D657DA953B246 /* DhimanMotorGarageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DhimanMotorGarageApp.swift; sourceTree = "<group>"; };
 		6532FFC21A59B001319E2EB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6941F99296BB4675A9F95B1E /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		72C02A6BE5FA701E00EF353D /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		7B460A93E79A30E46DFBC7A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D01405672CD96478B4BB3AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A57A2B4E1AA6478E77C87753 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BA5797B384D8B8FEFAB61E51 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		BF4ABE4CFA758C61CA280D20 /* Dhiman Motor Garage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dhiman Motor Garage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFA16AD92FF6733E002E03E5 /* DhimanMotorGarage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DhimanMotorGarage.entitlements; sourceTree = "<group>"; };
-		F1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BF4ABE4CFA758C61CA280D20 /* DhimanMotorGarage.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DhimanMotorGarage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C42B523A811B5AF1C359403B /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		CE1FD3A72EDCE3A59CB2A669 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DE213AE94AFB6AFDF50CFBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB1DD8CAA1FCF50FF7647FE8 /* OneSignalFramework in Frameworks */,
+				FE37380CD6264C8A87E71B85 /* OneSignalExtension in Frameworks */,
+				938F59F7057586DCEE537C0E /* OneSignalInAppMessages in Frameworks */,
+				FB06AC802E9B30C4FA507FC8 /* OneSignalLocation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B71EFE34B3672A2CCABF6321 /* DhimanMotorGarage */ = {
 			isa = PBXGroup;
 			children = (
-				EFA16AD92FF6733E002E03E5 /* DhimanMotorGarage.entitlements */,
-				F1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */,
 				6532FFC21A59B001319E2EB0 /* Assets.xcassets */,
 				7B460A93E79A30E46DFBC7A4 /* ContentView.swift */,
+				098C00F38970E913314D8207 /* DhimanMotorGarage.entitlements */,
 				56E62034B41D657DA953B246 /* DhimanMotorGarageApp.swift */,
 				8D01405672CD96478B4BB3AE /* Info.plist */,
 				72C02A6BE5FA701E00EF353D /* NetworkMonitor.swift */,
-				6941F99296BB4675A9F95B1E /* PushNotificationManager.swift */,
+				CE1FD3A72EDCE3A59CB2A669 /* PrivacyInfo.xcprivacy */,
+				C42B523A811B5AF1C359403B /* PushNotificationManager.swift */,
 				A57A2B4E1AA6478E77C87753 /* RootView.swift */,
 				BA5797B384D8B8FEFAB61E51 /* SplashScreenView.swift */,
 				3DE059294A2878595AEC27BF /* WebView.swift */,
@@ -59,7 +73,6 @@
 		CC1ED3909CB561CC71D78C56 = {
 			isa = PBXGroup;
 			children = (
-				EFA16AD72FF6711B002E03E5 /* Packages */,
 				B71EFE34B3672A2CCABF6321 /* DhimanMotorGarage */,
 				D315F3366BF0A006723E51D2 /* Products */,
 			);
@@ -68,16 +81,9 @@
 		D315F3366BF0A006723E51D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF4ABE4CFA758C61CA280D20 /* Dhiman Motor Garage.app */,
+				BF4ABE4CFA758C61CA280D20 /* DhimanMotorGarage.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EFA16AD72FF6711B002E03E5 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,9 +93,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C7353B184A1B7FB0F865537 /* Build configuration list for PBXNativeTarget "DhimanMotorGarage" */;
 			buildPhases = (
-				FA000DB02FF68001002E03E5 /* Frameworks */,
 				EF4EFFFA9522C563DFA8BAE1 /* Sources */,
 				C4AB121ABFA4FDAE122B603E /* Resources */,
+				0DE213AE94AFB6AFDF50CFBC /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -97,13 +103,13 @@
 			);
 			name = DhimanMotorGarage;
 			packageProductDependencies = (
-				EFA16ADB2FF676E2002E03E5 /* OneSignalExtension */,
-				EFA16ADC2FF676E2002E03E5 /* OneSignalFramework */,
-				EFA16ADD2FF676E2002E03E5 /* OneSignalInAppMessages */,
-				EFA16ADE2FF676E2002E03E5 /* OneSignalLocation */,
+				CF5D412F3D23F81843AFAC0D /* OneSignalFramework */,
+				263AC97E08D7DB2DC23D09F8 /* OneSignalExtension */,
+				CDEC3DC446DBB63337D1D443 /* OneSignalInAppMessages */,
+				7DC7B9215949994E6E03B075 /* OneSignalLocation */,
 			);
 			productName = DhimanMotorGarage;
-			productReference = BF4ABE4CFA758C61CA280D20 /* Dhiman Motor Garage.app */;
+			productReference = BF4ABE4CFA758C61CA280D20 /* DhimanMotorGarage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -130,7 +136,7 @@
 			);
 			mainGroup = CC1ED3909CB561CC71D78C56;
 			packageReferences = (
-				EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
+				0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,27 +146,13 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		FA000DB02FF68001002E03E5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FA001DB12FF68001002E03E5 /* OneSignalExtension in Frameworks */,
-				FA002DB22FF68001002E03E5 /* OneSignalFramework in Frameworks */,
-				FA003DB32FF68001002E03E5 /* OneSignalInAppMessages in Frameworks */,
-				FA004DB42FF68001002E03E5 /* OneSignalLocation in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXResourcesBuildPhase section */
 		C4AB121ABFA4FDAE122B603E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				458E9BC2576BA379C356D35D /* Assets.xcassets in Resources */,
-				D4E7F1A2B3C8459D8F210E93 /* PrivacyInfo.xcprivacy in Resources */,
+				26024BD84AB9C434B90A81A0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +166,7 @@
 				6AC784F1E6752A7F20765E5E /* ContentView.swift in Sources */,
 				7A083506D34FFDB932E8456A /* DhimanMotorGarageApp.swift in Sources */,
 				EE98D05EF972D144B75099CC /* NetworkMonitor.swift in Sources */,
-				A81C4F23D1B540AB9FCA99CD /* PushNotificationManager.swift in Sources */,
+				D3919CEBA788DFD609556243 /* PushNotificationManager.swift in Sources */,
 				48A7BFB8ACBF4D1926413FAC /* RootView.swift in Sources */,
 				0B61C0503D75F478B3B7C8B3 /* SplashScreenView.swift in Sources */,
 				8D1A00D315E6750C30549DC2 /* WebView.swift in Sources */,
@@ -373,36 +365,36 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
+		0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EFA16ADB2FF676E2002E03E5 /* OneSignalExtension */ = {
+		263AC97E08D7DB2DC23D09F8 /* OneSignalExtension */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			package = 0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
 			productName = OneSignalExtension;
 		};
-		EFA16ADC2FF676E2002E03E5 /* OneSignalFramework */ = {
+		7DC7B9215949994E6E03B075 /* OneSignalLocation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
-			productName = OneSignalFramework;
+			package = 0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalLocation;
 		};
-		EFA16ADD2FF676E2002E03E5 /* OneSignalInAppMessages */ = {
+		CDEC3DC446DBB63337D1D443 /* OneSignalInAppMessages */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			package = 0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
 			productName = OneSignalInAppMessages;
 		};
-		EFA16ADE2FF676E2002E03E5 /* OneSignalLocation */ = {
+		CF5D412F3D23F81843AFAC0D /* OneSignalFramework */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EFA16ADA2FF676E2002E03E5 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
-			productName = OneSignalLocation;
+			package = 0BD34527422E4E53FCC4E91E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalFramework;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

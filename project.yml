@@ -4,6 +4,12 @@ options:
   deploymentTarget:
     iOS: "15.0"
   xcodeVersion: "16.0"
+
+packages:
+  OneSignal-iOS-SDK:
+    url: https://github.com/OneSignal/OneSignal-iOS-SDK
+    majorVersion: "5"
+
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -11,12 +17,22 @@ settings:
     CURRENT_PROJECT_VERSION: 1
     MARKETING_VERSION: 1.1
     DEVELOPMENT_TEAM: LF96H2J9VK
+
 targets:
   DhimanMotorGarage:
     type: application
     platform: iOS
     sources:
       - path: DhimanMotorGarage
+    dependencies:
+      - package: OneSignal-iOS-SDK
+        product: OneSignalFramework
+      - package: OneSignal-iOS-SDK
+        product: OneSignalExtension
+      - package: OneSignal-iOS-SDK
+        product: OneSignalInAppMessages
+      - package: OneSignal-iOS-SDK
+        product: OneSignalLocation
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: in.dhimanmotorgarage.app
@@ -24,6 +40,7 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         PRODUCT_NAME: "Dhiman Motor Garage"
+        CODE_SIGN_ENTITLEMENTS: DhimanMotorGarage/DhimanMotorGarage.entitlements
     info:
       path: DhimanMotorGarage/Info.plist
       properties:
@@ -43,8 +60,10 @@ targets:
         NSAppTransportSecurity:
           NSAllowsArbitraryLoadsInWebContent: true
         NSCameraUsageDescription: "Dhiman Motor Garage uses your camera so you can photograph your vehicle or its parts when submitting a service request. For example, you can capture an image of a damaged component or your vehicle's current condition so our technicians can review it before your appointment."
-        NSLocationWhenInUseUsageDescription: This app needs location access for vehicle service features on the website.
-        NSPhotoLibraryUsageDescription: This app needs photo library access for vehicle service features on the website.
+        NSLocationWhenInUseUsageDescription: "Dhiman Motor Garage uses your location to show nearby service centers, estimate pickup distance, and autofill your address when booking a vehicle service appointment."
+        NSPhotoLibraryUsageDescription: "Dhiman Motor Garage accesses your photo library so you can attach images of your vehicle or damaged parts when submitting a service request, helping our technicians prepare before your appointment."
+        UIBackgroundModes:
+          - remote-notification
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
