@@ -31,8 +31,7 @@ workflows:
           xcodebuild \
             -project "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
-            -resolvePackageDependencies \
-            -clonedSourcePackagesDirPath "SourcePackages"
+            -resolvePackageDependencies
 
       - name: Set build number
         script: agvtool new-version -all $BUILD_NUMBER
@@ -50,17 +49,13 @@ workflows:
         script: keychain add-certificates
 
       - name: Apply provisioning profiles to Xcode project
-        script: |
-          # Remove xcodeproj files from SPM checkouts so use-profiles doesn't try to sign them
-          find SourcePackages/checkouts -name "*.xcodeproj" -exec rm -rf {} + 2>/dev/null || true
-          xcode-project use-profiles
+        script: xcode-project use-profiles
 
       - name: Build and export IPA
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME" \
-            --cloned-source-packages-path "SourcePackages"
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
       - build/ios/ipa/*.ipa
