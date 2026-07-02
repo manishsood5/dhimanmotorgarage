@@ -50,7 +50,7 @@ workflows:
         script: keychain add-certificates
 
       - name: Apply provisioning profiles to Xcode project
-        script: xcode-project use-profiles
+        script: xcode-project use-profiles --project "$XCODE_PROJECT"
 
       - name: Build and export IPA
         script: |
