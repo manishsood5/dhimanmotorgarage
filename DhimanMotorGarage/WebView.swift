@@ -1,7 +1,10 @@
 import SwiftUI
 import WebKit
+import OneSignalFramework
 
 struct WebView: UIViewRepresentable {
+    static let oneSignalBridgeName = "OneSignalBridge"
+
     let url: URL
     @Binding var isLoading: Bool
     @Binding var progress: Double
@@ -32,6 +35,13 @@ struct WebView: UIViewRepresentable {
         let script = WKUserScript(source: disableLongPressJS, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         configuration.userContentController.addUserScript(script)
 
+        // Bridge the web app to the native OneSignal SDK (external ID, tags, status).
+        // A weak proxy prevents the userContentController -> handler -> ... retain cycle.
+        configuration.userContentController.add(
+            WeakScriptMessageHandler(delegate: context.coordinator),
+            name: WebView.oneSignalBridgeName
+        )
+
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
@@ -59,9 +69,10 @@ struct WebView: UIViewRepresentable {
     static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
         coordinator.stopObserving()
         coordinator.stopObservingPushToken()
+        uiView.configuration.userContentController.removeScriptMessageHandler(forName: WebView.oneSignalBridgeName)
     }
 
-    final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
+    final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
         var parent: WebView
         weak var webView: WKWebView?
         private var progressObservation: NSKeyValueObservation?
@@ -213,6 +224,66 @@ struct WebView: UIViewRepresentable {
             return top
         }
 
+        // MARK: - OneSignal JavaScript bridge
+
+        func userContentController(
+            _ userContentController: WKUserContentController,
+            didReceive message: WKScriptMessage
+        ) {
+            guard message.name == WebView.oneSignalBridgeName else { return }
+
+            let body = message.body as? [String: Any] ?? [:]
+            let action = body["action"] as? String ?? ""
+            let payload = body["payload"] as? [String: Any] ?? [:]
+
+            switch action {
+            case "setExternalId":
+                if let id = payload["id"] as? String, !id.isEmpty {
+                    OneSignal.login(id)
+                }
+            case "clearExternalId":
+                OneSignal.logout()
+            case "setTags":
+                if let tags = payload["tags"] as? [String: Any] {
+                    let stringTags = tags.reduce(into: [String: String]()) { result, entry in
+                        result[entry.key] = String(describing: entry.value)
+                    }
+                    if !stringTags.isEmpty {
+                        OneSignal.User.addTags(stringTags)
+                    }
+                }
+            case "getPlayerId":
+                let playerId = OneSignal.User.pushSubscription.id ?? ""
+                sendToWeb(["playerId": playerId])
+            case "getSubscriptionStatus":
+                sendToWeb(["status": currentSubscriptionStatus()])
+            default:
+                break
+            }
+        }
+
+        private func currentSubscriptionStatus() -> [String: Any] {
+            let subscription = OneSignal.User.pushSubscription
+            return [
+                "subscribed": subscription.optedIn,
+                "playerId": subscription.id ?? "",
+                "hasPermission": OneSignal.Notifications.permission,
+                "platform": "ios"
+            ]
+        }
+
+        private func sendToWeb(_ data: [String: Any]) {
+            guard let webView,
+                  let jsonData = try? JSONSerialization.data(withJSONObject: data),
+                  let json = String(data: jsonData, encoding: .utf8) else {
+                return
+            }
+            let js = "if (typeof window.__onesignalBridgeReceive === 'function') { window.__onesignalBridgeReceive(\(json)); }"
+            DispatchQueue.main.async {
+                webView.evaluateJavaScript(js, completionHandler: nil)
+            }
+        }
+
         private func injectPushTokenIntoWebApp(_ token: String) {
             guard let webView else { return }
             let escapedToken = token.replacingOccurrences(of: "\\", with: "\\\\")
@@ -224,5 +295,22 @@ struct WebView: UIViewRepresentable {
             """
             webView.evaluateJavaScript(js, completionHandler: nil)
         }
+    }
+}
+
+/// Forwards script messages to a weakly held delegate so the
+/// `WKUserContentController` does not create a retain cycle with the coordinator.
+private final class WeakScriptMessageHandler: NSObject, WKScriptMessageHandler {
+    private weak var delegate: WKScriptMessageHandler?
+
+    init(delegate: WKScriptMessageHandler) {
+        self.delegate = delegate
+    }
+
+    func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
+        delegate?.userContentController(userContentController, didReceive: message)
     }
 }
