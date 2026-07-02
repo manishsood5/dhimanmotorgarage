@@ -4,6 +4,24 @@ options:
   deploymentTarget:
     iOS: "15.0"
   xcodeVersion: "16.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+schemes:
+  DhimanMotorGarage:
+    build:
+      targets:
+        DhimanMotorGarage: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
 
 packages:
   OneSignal-iOS-SDK:
